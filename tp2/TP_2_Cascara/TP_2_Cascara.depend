@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1492966499 source:c:\users\tomas mattia\documents\cursadaprogramacion-master\cursadaprogramacion-master\programacion i\tp_2_cascara\tp_2_cascara\main.c
+	<stdio.h>
+	<stdlib.h>
+	"funciones.h"
+
+1492650746 c:\users\tomas mattia\documents\cursadaprogramacion-master\cursadaprogramacion-master\programacion i\tp_2_cascara\tp_2_cascara\funciones.h
+
+1492972852 source:c:\users\tomas mattia\documents\cursadaprogramacion-master\cursadaprogramacion-master\programacion i\tp_2_cascara\tp_2_cascara\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"funciones.h"
+
