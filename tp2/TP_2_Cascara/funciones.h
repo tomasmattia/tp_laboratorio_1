@@ -24,33 +24,33 @@ int obtenerEspacioLibre(EPersona lista[]);
  */
 int buscarPorDni(EPersona lista[]);
 
-/** \brief
+/** \brief Se ejecuta obtenerEspacioLibre, si hay espacio toma los datos y los guarda, caso contrario avisa falta de espacio
  *
- * \param EPersona
- * \return void
+ * \param recibe la estructura "lista"
+ * \return void guarda un registro o avisa falta de espacio
  *
  */
 void agregarPersona(EPersona lista[]);
 
-/** \brief
+/** \brief Recibe la estructura, la ordena alfabeticamente y la muestra en pantalla.
  *
- * \param lista[] EPersona
- * \return void
+ * \param recibe la estructura "lista"
+ * \return void muestra y guarda la estructura ordenada alfabeticamente
  *
  */
 void mostrarOrdenado(EPersona lista[]);
 
-/** \brief
+/** \brief Recibe la estructura, ejecuta buscarPorDni, si el dni existe se muestra y pregunta si se quiere eliminar o no, caso afirmativo el estado pasa a 0, si no existe dni sale una advertencia,
  *
- * \param lista[] EPersona
- * \return void
+ * \param recibe la estructura "lista"
+ * \return
  *
  */
 void eliminarPersona(EPersona lista[]);
 
 /** \brief
  *
- * \param lista[] EPersona
+ * \param recibe la estructura "lista"
  * \return void
  *
  */

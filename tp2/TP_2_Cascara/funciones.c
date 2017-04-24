@@ -13,10 +13,11 @@ int obtenerEspacioLibre(EPersona lista[])
     int flagEspacio=0;
     for(i=0; i<MAX; i++)
     {
-        if(lista[i].estado==0)
+        if(lista[i].estado==0) // SI ENCUENTRA LUGAR
         {
             resultado=i;
             flagEspacio=1;
+            break;
         }
     }
     if(flagEspacio==0)
@@ -29,15 +30,23 @@ int obtenerEspacioLibre(EPersona lista[])
 void agregarPersona(EPersona lista[])
 {
     int x=obtenerEspacioLibre(lista);
-    if(x==-1)
+    char auxNombre[100]={};
+    if(x==-1) // SI NO HAY ESPACIO
     {
         printf("Se completo el espacio, necesita borrar una persona\n");
     }
-    else
+    else // SI HAY ESPACIO
     {
         printf("Ingrese el nombre: ");
         fflush(stdin);
-        gets(lista[x].nombre);
+        gets(auxNombre);
+        while(strlen(auxNombre)>49)
+        {
+            printf("Demasiado extenso, reingrese el nombre: ");
+            fflush(stdin);
+            gets(auxNombre);
+        }
+        strcpy(lista[x].nombre,auxNombre);
         printf("Ingresar edad: ");
         scanf("%d",&lista[x].edad);
         printf("Ingresar DNI: ");
@@ -61,6 +70,7 @@ int buscarPorDni(EPersona lista[])
         {
             resultado=i;
             flagDni=1;
+            break;
         }
     }
     if(flagDni==0)
@@ -100,11 +110,11 @@ void eliminarPersona(EPersona lista[])
 {
     int x=buscarPorDni(lista);
     char respuesta='n';
-    if(x==-1)
+    if(x==-1) // SI EL DNI NO EXISTE
     {
         printf("El dni ingresado es erroneo\n");
     }
-    else
+    else // SI EL DNI EXISTE
     {
         printf("\nDNI: %d\tNOMBRE: %s\t EDAD: %d",lista[x].dni,lista[x].nombre,lista[x].edad);
         printf("\nDesea eliminarlo? s/n: ");
@@ -128,8 +138,9 @@ void mostrarGrafico(EPersona lista[])
     int menores18=0;
     int entre18y35=0;
     int mayores35=0;
-    char grafico[MAX][3]= {};
+    char grafico[MAX][3]={};
     char asterisco='*';
+    // CALCULA LA CANTIDAD DE CADA RANGO
     for(i=0; i<MAX; i++)
     {
         if(lista[i].estado==1)
@@ -151,6 +162,7 @@ void mostrarGrafico(EPersona lista[])
             }
         }
     }
+    // MATRIZ
     for(i=0; i<menores18; i++)
     {
         grafico[i][0]=asterisco;
@@ -163,23 +175,25 @@ void mostrarGrafico(EPersona lista[])
     {
         grafico[i][2]=asterisco;
     }
-    // IMPRIMIR FUNCION
 
-    for(i=0;i<MAX;i++)
+    // IMPRIMIR MATRIZ
+    for(i=MAX-1;i>=0;i--)
     {
         for(j=0;j<3;j++)
         {
-            if(grafico[i][0]=='*' || grafico[i][1]=='*' || grafico[i][2]=='*')
-            {
-                printf("%c\t",grafico[i][j]);
-            }
-            else
+            if(grafico[i][0]+grafico[i][1]+grafico[i][2]==0) // SALTEA LINEAS EN BLANCO
             {
                 break;
             }
+            printf(" %c\t",grafico[i][j]);
         }
-        printf("\n");
+        if(grafico[i][0]+grafico[i][1]+grafico[i][2]!=0)
+        {
+            printf("\n");
+        }
+
     }
+    printf("-18\t18-35\t+35\n");
 
     /*printf("Menores de 18: ");
     for(i=0;i<MAX;i++)

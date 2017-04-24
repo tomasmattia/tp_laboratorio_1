@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "funciones.h"
 #define MAX 20
 
@@ -11,7 +12,10 @@ int main()
     EPersona lista[MAX];
     for(i=0;i<MAX;i++)
     {
+        strcpy(lista[i].nombre," ");
+        lista[i].edad=0;
         lista[i].estado=0;
+        lista[i].dni=0;
     }
     while(seguir=='s')
     {
@@ -20,7 +24,7 @@ int main()
         printf("3- Imprimir lista ordenada por  nombre\n");
         printf("4- Imprimir grafico de edades\n");
         printf("5- Salir\n");
-
+        fflush(stdin);
         scanf("%d",&opcion);
 
         switch(opcion)
@@ -39,6 +43,9 @@ int main()
                 break;
             case 5:
                 seguir = 'n';
+                break;
+            default:
+                printf("No es una opcion valida\n");
                 break;
         }
     }
