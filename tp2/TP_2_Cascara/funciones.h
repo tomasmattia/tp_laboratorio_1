@@ -43,15 +43,15 @@ void mostrarOrdenado(EPersona lista[]);
 /** \brief Recibe la estructura, ejecuta buscarPorDni, si el dni existe se muestra y pregunta si se quiere eliminar o no, caso afirmativo el estado pasa a 0, si no existe dni sale una advertencia,
  *
  * \param recibe la estructura "lista"
- * \return
+ * \return void uestra el dni buscado para eliminar y lo elimina si el usuario asi lo decide
  *
  */
 void eliminarPersona(EPersona lista[]);
 
-/** \brief
+/** \brief Recibe la estructura, cuenta la cantidad de personas por rango etario, arma una matriz y luego la grafica.
  *
  * \param recibe la estructura "lista"
- * \return void
+ * \return void muestra la cantidad de personas en cada rango etario con un grafico
  *
  */
 void mostrarGrafico(EPersona lista[]);
