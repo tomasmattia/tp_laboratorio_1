@@ -30,7 +30,7 @@ int obtenerEspacioLibre(EPersona lista[])
 void agregarPersona(EPersona lista[])
 {
     int x=obtenerEspacioLibre(lista);
-    char auxNombre[100]={};
+    char auxNombre[100]= {};
     if(x==-1) // SI NO HAY ESPACIO
     {
         printf("Se completo el espacio, necesita borrar una persona\n");
@@ -138,7 +138,7 @@ void mostrarGrafico(EPersona lista[])
     int menores18=0;
     int entre18y35=0;
     int mayores35=0;
-    char grafico[MAX][3]={};
+    char grafico[MAX][3]= {};
     char asterisco='*';
     // CALCULA LA CANTIDAD DE CADA RANGO
     // LA CONSIGNA NO ESTABLECE DONDE UBICAR A LAS PERSONAS DE 18 AÑOS, EN ESTA FUNCION SE INCLUYEN EN EL RANGO DE "19-35"
@@ -162,7 +162,7 @@ void mostrarGrafico(EPersona lista[])
                 {
                     //if(lista[i].edad>35)
                     //{
-                        mayores35+=1;
+                    mayores35+=1;
                     //}
                 }
             }
@@ -183,9 +183,9 @@ void mostrarGrafico(EPersona lista[])
     }
 
     // IMPRIMIR MATRIZ
-    for(i=MAX-1;i>=0;i--)
+    for(i=MAX-1; i>=0; i--)
     {
-        for(j=0;j<3;j++)
+        for(j=0; j<3; j++)
         {
             if(grafico[i][0]+grafico[i][1]+grafico[i][2]==0) // SALTEA LINEAS EN BLANCO
             {
@@ -218,3 +218,4 @@ void mostrarGrafico(EPersona lista[])
     }
     printf("\n");*/
 }
+

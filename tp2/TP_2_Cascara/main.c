@@ -19,13 +19,14 @@ int main()
     }
     do
     {
+        opcion=0;
         printf("1- Agregar persona\n");
         printf("2- Borrar persona\n");
         printf("3- Imprimir lista ordenada por  nombre\n");
         printf("4- Imprimir grafico de edades\n");
         printf("5- Salir\n");
-
-        scanf("%d",&opcion);
+        fflush(stdin);
+        scanf(" %d",&opcion);
 
         switch(opcion)
         {
