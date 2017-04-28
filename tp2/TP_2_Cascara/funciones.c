@@ -109,8 +109,8 @@ void mostrarOrdenado(EPersona lista[])
 void eliminarPersona(EPersona lista[])
 {
     int x=buscarPorDni(lista);
-    char respuesta='n';
-    if(x==-1 && lista[x].estado==0) // SI EL DNI NO EXISTE
+    char respuesta;
+    if(x==-1 || lista[x].estado==0) // SI EL DNI NO EXISTE
     {
         printf("El dni ingresado es erroneo\n");
     }

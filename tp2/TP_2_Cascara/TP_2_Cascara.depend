@@ -28,3 +28,18 @@
 	<conio.h>
 	"funciones.h"
 
+1493380095 source:c:\users\alumno\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp2\tp_2_cascara\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"funciones.h"
+
+1493380095 c:\users\alumno\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp2\tp_2_cascara\funciones.h
+
+1493386938 source:c:\users\alumno\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp2\tp_2_cascara\funciones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"funciones.h"
+
