@@ -66,7 +66,7 @@ int buscarPorDni(EPersona lista[])
     scanf("%d",&dni);
     for(i=0; i<MAX; i++)
     {
-        if(dni==lista[i].dni)
+        if(dni==lista[i].dni && lista[i].estado==1)
         {
             resultado=i;
             flagDni=1;
@@ -110,7 +110,7 @@ void eliminarPersona(EPersona lista[])
 {
     int x=buscarPorDni(lista);
     char respuesta='n';
-    if(x==-1) // SI EL DNI NO EXISTE
+    if(x==-1 && lista[x].estado==0) // SI EL DNI NO EXISTE
     {
         printf("El dni ingresado es erroneo\n");
     }
@@ -141,23 +141,29 @@ void mostrarGrafico(EPersona lista[])
     char grafico[MAX][3]={};
     char asterisco='*';
     // CALCULA LA CANTIDAD DE CADA RANGO
+    // LA CONSIGNA NO ESTABLECE DONDE UBICAR A LAS PERSONAS DE 18 AÑOS, EN ESTA FUNCION SE INCLUYEN EN EL RANGO DE "19-35"
     for(i=0; i<MAX; i++)
     {
         if(lista[i].estado==1)
         {
+            // if(lista[i].edad<19)
             if(lista[i].edad<18)
             {
                 menores18+=1;
             }
             else
             {
-                if(lista[i].edad>18 && lista[i].edad<35)
+                // if(lista[i].edad>18 && lista[i].edad<35)
+                if(lista[i].edad>17 && lista[i].edad<35)
                 {
                     entre18y35+=1;
                 }
                 else
                 {
-                    mayores35+=1;
+                    //if(lista[i].edad>35)
+                    //{
+                        mayores35+=1;
+                    //}
                 }
             }
         }

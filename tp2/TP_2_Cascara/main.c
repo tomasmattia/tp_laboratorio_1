@@ -17,14 +17,14 @@ int main()
         lista[i].estado=0;
         lista[i].dni=0;
     }
-    while(seguir=='s')
+    do
     {
         printf("1- Agregar persona\n");
         printf("2- Borrar persona\n");
         printf("3- Imprimir lista ordenada por  nombre\n");
         printf("4- Imprimir grafico de edades\n");
         printf("5- Salir\n");
-        fflush(stdin);
+
         scanf("%d",&opcion);
 
         switch(opcion)
@@ -48,7 +48,9 @@ int main()
                 printf("No es una opcion valida\n");
                 break;
         }
-    }
+        system("pause");
+        system("cls");
+    }while(seguir=='s');
 
     return 0;
 }
