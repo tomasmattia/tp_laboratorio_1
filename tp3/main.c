@@ -77,7 +77,7 @@ int main()
                 }
                 break;
             case 2:
-                borrarPelicula(listaPeliculas,contadorPeliculas);
+                borrarPelicula(listaPeliculas,contadorPeliculas,punteroAcontador);
                 break;
             case 3:
                 modificarPelicula(listaPeliculas,contadorPeliculas);
@@ -88,7 +88,7 @@ int main()
                 gets(nombreHtml);
                 validarString(nombreHtml,25);
                 generarPagina(listaPeliculas,contadorPeliculas,nombreHtml);
-                if(guardarEnArchivo(listaPeliculas,contadorPeliculas))
+                if(guardarEnArchivo(listaPeliculas,contadorPeliculas,punteroAcontador))
                 {
                     printf("\nNo se pudo abrir el fichero\n");
                 }

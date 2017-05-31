@@ -7,7 +7,7 @@ typedef struct{
     int duracion;
     char descripcion[50];
     int puntaje;
-    char linkImagen[50];
+    char linkImagen[150];
 }EMovie;
 
 /** \brief Carga desde el archivo binario las peliculas en un array de estructuras
@@ -28,7 +28,7 @@ int buscarLibre(EMovie *listaPeliculas,int);
 
 void validarString(char stringAValid[], int);
 
-int checkearNumero(int numero,int minimo,int maximo);
+int checkearNumero(int ,int ,int );
 
 /** \brief
  *
@@ -44,17 +44,17 @@ void agregarPelicula(EMovie *listaPeliculas,int,int*);
  * \return void
  *
  */
-void borrarPelicula(EMovie *listaPeliculas,int);
+void borrarPelicula(EMovie *listaPeliculas,int,int*);
 
 /**
  *  Genera un archivo html a partir de las peliculas cargadas en el archivo binario.
  *  @param lista la lista de peliculas a ser agregadas en el archivo.
  *  @param nombre el nombre para el archivo.
  */
-void generarPagina(EMovie* listaPeliculas, int contadorPeliculas, char nombreHtml[]);
+void generarPagina(EMovie* listaPeliculas, int , char nombreHtml[]);
 
 void modificarPelicula(EMovie *listaPeliculas,int);
 
-int guardarEnArchivo(EMovie* listaPeliculas,int);
+int guardarEnArchivo(EMovie* listaPeliculas,int,int*);
 
 #endif // FUNCIONES_H_INCLUDED

@@ -23,7 +23,12 @@ int cargarDesdeArchivo(EMovie *listaPeliculas, int* punteroAcontador)
     }
     if(flag==0)
     {
-        fread(listaPeliculas,sizeof(EMovie),1,f);
+        fread(punteroAcontador,sizeof(int),1,f);
+        while(!feof(f))
+        {
+            fread(listaPeliculas,sizeof(EMovie),1,f);
+        }
+
     }
     fclose(f);
     return 0;
@@ -78,7 +83,7 @@ void agregarPelicula(EMovie *listaPeliculas,int contadorPeliculas,int* punteroAc
     int duracion;
     char auxDescripcion[100];
     int puntaje;
-    char linkImagen[100];
+    char linkImagen[200];
     int largoTitulo;
     int encontro=0;
     ubicacion=contadorPeliculas-1;
@@ -127,7 +132,7 @@ void agregarPelicula(EMovie *listaPeliculas,int contadorPeliculas,int* punteroAc
         printf("Ingrese el link de la imagen: ");
         fflush(stdin);
         gets(linkImagen);
-        validarString(linkImagen,50);
+        validarString(linkImagen,150);
         strcpy((listaPeliculas+ubicacion)->linkImagen,linkImagen);
     }
     else
@@ -137,7 +142,7 @@ void agregarPelicula(EMovie *listaPeliculas,int contadorPeliculas,int* punteroAc
     }
 }
 
-void borrarPelicula(EMovie *listaPeliculas,int contadorPeliculas)
+void borrarPelicula(EMovie *listaPeliculas,int contadorPeliculas,int* punteroAcontador)
 {
     int flag=0,i;
     char titulo[50];
@@ -165,7 +170,7 @@ void borrarPelicula(EMovie *listaPeliculas,int contadorPeliculas)
             if(opcion=='s')
             {
                 (listaPeliculas+i)->duracion=0;
-                strcpy((listaPeliculas+i)->titulo,"");
+                *punteroAcontador-=1;
                 printf("\nPelicula borrada!\n");
             }
             else
@@ -308,7 +313,7 @@ void modificarPelicula(EMovie *listaPeliculas,int contadorPeliculas)
     }
 }
 
-int guardarEnArchivo(EMovie* listaPeliculas,int contadorPeliculas)
+int guardarEnArchivo(EMovie* listaPeliculas,int contadorPeliculas,int* punteroAcontador)
 {
 
 	FILE *f;
@@ -317,6 +322,7 @@ int guardarEnArchivo(EMovie* listaPeliculas,int contadorPeliculas)
 		{
 			return 1;
 		}
+    fwrite(punteroAcontador,sizeof(int),1,f);
 
 	fwrite(listaPeliculas,sizeof(EMovie),contadorPeliculas,f);
 
@@ -330,7 +336,7 @@ void generarPagina(EMovie* listaPeliculas, int contadorPeliculas, char nombreHtm
     FILE *f;
     int i;
     strcat(nombreHtml,".html");
-    f=fopen(nombreHtml,"w+");
+    f=fopen(nombreHtml,"w");
     if(f == NULL)
     {
         printf("No se pudo crear el archivo");
@@ -339,10 +345,14 @@ void generarPagina(EMovie* listaPeliculas, int contadorPeliculas, char nombreHtm
     fprintf(f,"<!DOCTYPE html><html lang='en'><head><meta charset='utf-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1'><title>Lista peliculas</title><link href='css/bootstrap.min.css' rel='stylesheet'><link href='css/custom.css' rel='stylesheet'></head><body><div class='container'><div class='row'>");
     for(i=0;i<contadorPeliculas;i++)
     {
-        fprintf(f,"<article class='col-md-4 article-intro'><a href='#'><img class='img-responsive img-rounded' src='%s' alt=''></a>\n",(listaPeliculas+i)->linkImagen);
-        fprintf(f,"<h3><a href='#'>%s</a></h3>\n",(listaPeliculas+i)->titulo);
-        fprintf(f,"<ul><li>Genero:%s</li>\n<li>Puntaje:%d</li>\n<li>Duracion:%d</li></ul>\n",(listaPeliculas+i)->genero,(listaPeliculas+i)->puntaje,(listaPeliculas+i)->duracion);
-        fprintf(f,"<p>%s</p></article>",(listaPeliculas+i)->descripcion);
+        if((listaPeliculas+i)->duracion!=0)
+        {
+            fprintf(f,"<article class='col-md-4 article-intro'><a href='#'><img class='img-responsive img-rounded' src='%s' alt=''></a>\n",(listaPeliculas+i)->linkImagen);
+            fprintf(f,"<h3><a href='#'>%s</a></h3>\n",(listaPeliculas+i)->titulo);
+            fprintf(f,"<ul><li>Genero:%s</li>\n<li>Puntaje:%d</li>\n<li>Duracion:%d</li></ul>\n",(listaPeliculas+i)->genero,(listaPeliculas+i)->puntaje,(listaPeliculas+i)->duracion);
+            fprintf(f,"<p>%s</p></article>",(listaPeliculas+i)->descripcion);
+        }
     }
     fprintf(f,"</div></div><script src='js/jquery-1.11.3.min.js'></script><script src='js/bootstrap.min.js'></script><script src='js/ie10-viewport-bug-workaround.js'></script><script src='js/holder.min.js'></script></body></html>");
+    fclose(f);
 }
