@@ -57,3 +57,23 @@
 	<limits.h>
 	"funciones.h"
 
+1496284396 source:c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp3\funciones.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<limits.h>
+	"funciones.h"
+
+1496228796 c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp3\funciones.h
+
+1496284277 source:c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp3\main.c
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	<conio.h>
+	<limits.h>
+	"funciones.h"
+

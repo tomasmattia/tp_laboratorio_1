@@ -12,7 +12,7 @@ int main()
     int* punteroAcontador=&contadorPeliculas;
     char nombreHtml[50]={};
     EMovie* listaPeliculas;
-    listaPeliculas=(EMovie*)malloc(sizeof(EMovie));
+    listaPeliculas=(EMovie*)malloc(sizeof(EMovie)*100);
     if(listaPeliculas==NULL)
     {
         printf("\nNo hay lugar en memoria\n");
@@ -55,16 +55,11 @@ int main()
         switch(opcion)
         {
             case 1:
-                if(contadorPeliculas==0)
-                {
-                    contadorPeliculas++;
-                    agregarPelicula(listaPeliculas,contadorPeliculas,punteroAcontador);
-                }
-                else
+                if(contadorPeliculas%100==0)
                 {
                     contadorPeliculas++;
                     EMovie* auxPeliculas;
-                    auxPeliculas=(EMovie*)realloc(listaPeliculas,contadorPeliculas*sizeof(EMovie));
+                    auxPeliculas=(EMovie*)realloc(listaPeliculas,100*sizeof(EMovie));
                     if(auxPeliculas==NULL)
                     {
                         exit(1);
@@ -74,6 +69,11 @@ int main()
                         listaPeliculas=auxPeliculas;
                         agregarPelicula(listaPeliculas,contadorPeliculas,punteroAcontador);
                     }
+                }
+                else
+                {
+                    contadorPeliculas++;
+                    agregarPelicula(listaPeliculas,contadorPeliculas,punteroAcontador);
                 }
                 break;
             case 2:

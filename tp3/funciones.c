@@ -11,10 +11,10 @@ int cargarDesdeArchivo(EMovie *listaPeliculas, int* punteroAcontador)
     int flag = 0;
     FILE *f;
 
-    f=fopen("moviesBin.dat", "r+b");
+    f=fopen("moviesBin.dat", "rb");
     if(f==NULL)
     {
-        f= fopen("moviesBin.dat", "w+b");
+        f= fopen("moviesBin.dat", "wb");
         if(f==NULL)
         {
             return 1;
@@ -26,9 +26,8 @@ int cargarDesdeArchivo(EMovie *listaPeliculas, int* punteroAcontador)
         fread(punteroAcontador,sizeof(int),1,f);
         while(!feof(f))
         {
-            fread(listaPeliculas,sizeof(EMovie),1,f);
+            fread(listaPeliculas,sizeof(EMovie),*punteroAcontador,f);
         }
-
     }
     fclose(f);
     return 0;
@@ -170,7 +169,6 @@ void borrarPelicula(EMovie *listaPeliculas,int contadorPeliculas,int* punteroAco
             if(opcion=='s')
             {
                 (listaPeliculas+i)->duracion=0;
-                *punteroAcontador-=1;
                 printf("\nPelicula borrada!\n");
             }
             else
@@ -317,7 +315,7 @@ int guardarEnArchivo(EMovie* listaPeliculas,int contadorPeliculas,int* punteroAc
 {
 
 	FILE *f;
-		f=fopen("moviesBin.dat","w+b");
+		f=fopen("moviesBin.dat","wb");
 		if(f == NULL)
 		{
 			return 1;
