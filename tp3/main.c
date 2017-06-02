@@ -10,7 +10,7 @@ int main()
 {
     int contadorPeliculas=0;
     int* punteroAcontador=&contadorPeliculas;
-    char nombreHtml[50]={};
+    char nombreHtml[50]={"listadoPeliculas"};
     EMovie* listaPeliculas;
     listaPeliculas=(EMovie*)malloc(sizeof(EMovie)*100);
     if(listaPeliculas==NULL)
@@ -42,7 +42,6 @@ int main()
 
     while(seguir=='s')
     {
-        printf("Valor de ContadorPeliculas: %d\n",contadorPeliculas);
         opcion=0;
         printf("1- Agregar pelicula\n");
         printf("2- Borrar pelicula\n");
@@ -77,17 +76,14 @@ int main()
                 }
                 break;
             case 2:
-                borrarPelicula(listaPeliculas,contadorPeliculas,punteroAcontador);
+                borrarPelicula(listaPeliculas,contadorPeliculas);
                 break;
             case 3:
                 modificarPelicula(listaPeliculas,contadorPeliculas);
                break;
             case 4:
-                printf("Ingrese el nombre que llevara el HTML: ");
-                fflush(stdin);
-                gets(nombreHtml);
-                validarString(nombreHtml,25);
                 generarPagina(listaPeliculas,contadorPeliculas,nombreHtml);
+                printf("Se genero un archivo HTML con el siguiente nombre: %s",nombreHtml);
                 if(guardarEnArchivo(listaPeliculas,contadorPeliculas,punteroAcontador))
                 {
                     printf("\nNo se pudo abrir el fichero\n");

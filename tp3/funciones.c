@@ -33,19 +33,6 @@ int cargarDesdeArchivo(EMovie *listaPeliculas, int* punteroAcontador)
     return 0;
 }
 
-int buscarLibre(EMovie *listaPeliculas,int contadorPeliculas)
-{
-    int index=-1;
-    int i;
-    for(i=0; i<contadorPeliculas; i++)
-        if((listaPeliculas+i)->duracion==0)
-        {
-            index=i;
-            break;
-        }
-    return index;
-}
-
 void toString(EMovie *listaPeliculas)
 {
     printf("TITULO :%s\nGENERO: %s\nDURACION: %d MINUTOS\nDESCRIPCION: %s\nPUNTAJE: %d\nLINK IMAGEN: %s\n", listaPeliculas->titulo, listaPeliculas->genero, listaPeliculas->duracion, listaPeliculas->descripcion, listaPeliculas->puntaje, listaPeliculas->linkImagen);
@@ -141,12 +128,20 @@ void agregarPelicula(EMovie *listaPeliculas,int contadorPeliculas,int* punteroAc
     }
 }
 
-void borrarPelicula(EMovie *listaPeliculas,int contadorPeliculas,int* punteroAcontador)
+void borrarPelicula(EMovie *listaPeliculas,int contadorPeliculas)
 {
     int flag=0,i;
     char titulo[50];
     char opcion;
     int largoTitulo;
+    printf("LISTA DE PELICULAS\n\n");
+    for(i=0;i<contadorPeliculas;i++)
+    {
+        if((listaPeliculas+i)->duracion!=0)
+        {
+            printf("%s\n",(listaPeliculas+i)->titulo);
+        }
+    }
     printf("Ingrese el titulo de la pelicula a eliminar: ");
     fflush(stdin);
     scanf("%s", titulo);
@@ -198,6 +193,14 @@ void modificarPelicula(EMovie *listaPeliculas,int contadorPeliculas)
     char linkImagen[100];
     int largoTitulo;
     int encontro=0;
+    printf("LISTA DE PELICULAS\n\n");
+    for(i=0;i<contadorPeliculas;i++)
+    {
+        if((listaPeliculas+i)->duracion!=0)
+        {
+            printf("%s\n",(listaPeliculas+i)->titulo);
+        }
+    }
     printf("Ingrese el titulo de la pelicula a modificar: ");
     fflush(stdin);
     scanf("%s", auxTitulo);
