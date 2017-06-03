@@ -57,7 +57,7 @@
 	<limits.h>
 	"funciones.h"
 
-1496363463 source:c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp3\funciones.c
+1496448423 source:c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp3\funciones.c
 	<stdio.h>
 	<string.h>
 	<stdlib.h>
@@ -66,9 +66,9 @@
 	<limits.h>
 	"funciones.h"
 
-1496362970 c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp3\funciones.h
+1496448776 c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp3\funciones.h
 
-1496363379 source:c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp3\main.c
+1496448556 source:c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp3\main.c
 	<stdio.h>
 	<string.h>
 	<stdlib.h>

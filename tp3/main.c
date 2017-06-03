@@ -11,8 +11,11 @@ int main()
     int contadorPeliculas=0;
     int* punteroAcontador=&contadorPeliculas;
     char nombreHtml[50]={"listadoPeliculas"};
+    int auxContador=0; // PARA CONTAR LAS PELICULAS ACTIVAS ANTES DE GUARDAR
+    int* punteroAauxCont=&auxContador; // PARA CONTAR LAS PELICULAS ACTIVAS ANTES DE GUARDAR
+    int i;
     EMovie* listaPeliculas;
-    listaPeliculas=(EMovie*)malloc(sizeof(EMovie)*100);
+    listaPeliculas=(EMovie*)malloc(sizeof(EMovie)*50);
     if(listaPeliculas==NULL)
     {
         printf("\nNo hay lugar en memoria\n");
@@ -20,13 +23,6 @@ int main()
     }
     char seguir='s';
     int opcion=0;
-    int i;
-
-    for(i=0;i<contadorPeliculas;i++)
-    {
-        listaPeliculas->duracion=0;
-        listaPeliculas->puntaje=0;
-    }
 
     if(cargarDesdeArchivo(listaPeliculas,punteroAcontador))
 	{
@@ -58,7 +54,7 @@ int main()
                 {
                     contadorPeliculas++;
                     EMovie* auxPeliculas;
-                    auxPeliculas=(EMovie*)realloc(listaPeliculas,100*sizeof(EMovie));
+                    auxPeliculas=(EMovie*)realloc(listaPeliculas,(contadorPeliculas*2)*sizeof(EMovie));
                     if(auxPeliculas==NULL)
                     {
                         exit(1);
@@ -82,9 +78,16 @@ int main()
                 modificarPelicula(listaPeliculas,contadorPeliculas);
                break;
             case 4:
+                for(i=0;i<contadorPeliculas;i++) // CUENTA LA CANTIDAD DE PELICULAS ACTIVAS QUE SE VAN A GUARDAR
+                {
+                    if((listaPeliculas+i)->duracion!=0)
+                    {
+                        *punteroAauxCont+=1;
+                    }
+                }
                 generarPagina(listaPeliculas,contadorPeliculas,nombreHtml);
                 printf("Se genero un archivo HTML con el siguiente nombre: %s",nombreHtml);
-                if(guardarEnArchivo(listaPeliculas,contadorPeliculas,punteroAcontador))
+                if(guardarEnArchivo(listaPeliculas,contadorPeliculas,punteroAauxCont)) // RECIBE LOS DOS CONTADORES PARA GUARDAR UNICAMENTE LAS ACTIVAS Y SU RESPECTIVA CANTIDAD
                 {
                     printf("\nNo se pudo abrir el fichero\n");
                 }

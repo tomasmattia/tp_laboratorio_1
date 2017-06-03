@@ -72,7 +72,7 @@ void generarPagina(EMovie* listaPeliculas, int , char nombreHtml[]);
  */
 void modificarPelicula(EMovie *listaPeliculas,int);
 
-/** \brief guarda todos los datos ingresados en un archivo binario, recibe el puntero al array de estructuras, el contador y el puntero al contador
+/** \brief guarda todos los datos ingresados en un archivo binario, recibe el puntero al array de estructuras, el contador y el puntero al contador auxiliar con la cantidad de peliculas activas
  *
  * \param listaPeliculas EMovie*
  * \param int contador
