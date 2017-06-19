@@ -23,7 +23,12 @@ int main()
         {
             case 1:
                 strcpy(nombreArchivo,"destinatarios.csv");
-                cargarListaDestinatarios(nombreArchivo,listaDestinatarios);
+
+
+                if(cargarListaDestinatarios(nombreArchivo,listaDestinatarios)==0)
+                {
+                    printf("La lista de destinatarios se cargo con exito\n");
+                }
                 break;
             case 2:
 

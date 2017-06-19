@@ -22,18 +22,19 @@ int cargarListaDestinatarios(char* nombreArchivo,ArrayList* listaDestinatarios)
     char nombre[50]="";
     char mail[150]="";
     fp = fopen(nombreArchivo,"r");
+    eDestinatario* unDestinatario;
     if(fp!=NULL)
     {
         while(!feof(fp))
         {
-            eDestinatario* unDestinatario=(eDestinatario*)malloc(sizeof(eDestinatario*));
-
+            unDestinatario=(eDestinatario*)malloc(sizeof(eDestinatario));
+           if(unDestinatario!=NULL)
+            {
             fscanf(fp,"%[^,],%[^\n]\n",nombre,mail);
 
             strcpy(unDestinatario->nombre,nombre);
             strcpy(unDestinatario->mail,mail);
-            if(unDestinatario!=NULL)
-            {
+
                 listaDestinatarios->add(listaDestinatarios,unDestinatario);
             }
         }

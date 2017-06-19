@@ -7,7 +7,7 @@
 
 1497648205 d:\tp4\pruebaparcial\pruebaparcial2\arraylist.h
 
-1497885112 source:d:\tp4\pruebaparcial\pruebaparcial2\main.c
+1497885523 source:d:\tp4\pruebaparcial\pruebaparcial2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -15,14 +15,14 @@
 	"ArrayList.h"
 	"lib.h"
 
-1497884692 d:\tp4\pruebaparcial\pruebaparcial2\lib.h
+1497885755 d:\tp4\pruebaparcial\pruebaparcial2\lib.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	"ArrayList.h"
 
-1497885109 source:d:\tp4\pruebaparcial\pruebaparcial2\lib.c
+1497885647 source:d:\tp4\pruebaparcial\pruebaparcial2\lib.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

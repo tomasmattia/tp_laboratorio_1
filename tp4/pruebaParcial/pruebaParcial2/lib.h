@@ -6,8 +6,8 @@
 
 typedef struct
 {
-    char* nombre;
-    char* mail;
+    char nombre[50];
+    char mail[150];
 }eDestinatario;
 
 void menu(void);
