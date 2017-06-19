@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1497874060 source:d:\tp4\pruebaparcial\pruebaparcial\arraylist.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"ArrayList.h"
+
+1497648205 d:\tp4\pruebaparcial\pruebaparcial\arraylist.h
+
+1497878329 source:d:\tp4\pruebaparcial\pruebaparcial\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<limits.h>
+	"ArrayList.h"
+	"lib.h"
+
+1497877799 d:\tp4\pruebaparcial\pruebaparcial\lib.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"ArrayList.h"
+
+1497877786 source:d:\tp4\pruebaparcial\pruebaparcial\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"ArrayList.h"
+	"lib.h"
+
