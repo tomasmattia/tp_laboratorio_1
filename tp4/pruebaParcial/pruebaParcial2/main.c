@@ -8,8 +8,10 @@
 int main()
 {
     int opcion;
-    char* nombreArchivo=(char*)malloc(sizeof(char*));
+    char* nombreArchivo=(char*)malloc(sizeof(char)*50);
     ArrayList* listaDestinatarios=al_newArrayList();
+    ArrayList* blackList=al_newArrayList();
+    ArrayList* listaDepurada=al_newArrayList();
     char respuesta='s';
     do
     {
@@ -20,17 +22,19 @@ int main()
         switch(opcion)
         {
             case 1:
-
+                strcpy(nombreArchivo,"destinatarios.csv");
+                cargarListaDestinatarios(nombreArchivo,listaDestinatarios);
                 break;
             case 2:
+
                 break;
             case 3:
 
                 break;
             case 4:
-
+                mostrarListaDestinatarios(listaDestinatarios);
                 break;
-            case 7:
+            case 5:
                 respuesta='n';
                 break;
             default:

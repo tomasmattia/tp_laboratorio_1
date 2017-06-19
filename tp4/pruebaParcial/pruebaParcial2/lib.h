@@ -6,8 +6,14 @@
 
 typedef struct
 {
-    char nombre[50];
-    char mail[100];
+    char* nombre;
+    char* mail;
 }eDestinatario;
 
 void menu(void);
+
+int cargarListaDestinatarios(char*,ArrayList* listaDestinatarios);
+
+void mostrarUnDestinatario(eDestinatario* unDestinatario);
+
+void mostrarListaDestinatarios(ArrayList* listaDestinatarios);
