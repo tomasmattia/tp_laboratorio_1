@@ -12,8 +12,12 @@ typedef struct
 
 void menu(void);
 
-int cargarListaDestinatarios(char*,ArrayList* listaDestinatarios);
+int cargarLista(char* nombreArchivo,ArrayList* listaParaCargar);
 
 void mostrarUnDestinatario(eDestinatario* unDestinatario);
 
 void mostrarListaDestinatarios(ArrayList* listaDestinatarios);
+
+void depurarLista(ArrayList* listaDestinatarios, ArrayList* blackList, ArrayList* listaDepurada);
+
+void eliminarRepetidos(ArrayList* listaDepurada);

@@ -242,3 +242,20 @@ void clientesAtendidos(ArrayList* totalPacientes)
         printf("Todavia no se atendieron pacientes\n");
     }
 }
+
+int compararClientes(void* clienteA,void* clienteB)
+{
+
+    if(((eCliente*)clienteA)->dni > ((eCliente*)clienteB)->dni)
+    {
+        return 1;
+    }
+    if(((eCliente*)clienteA)->dni < ((eCliente*)clienteB)->dni)
+    {
+        return -1;
+    }
+    return 0;
+
+
+}
+

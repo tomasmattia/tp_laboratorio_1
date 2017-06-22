@@ -32,6 +32,7 @@ int main()
                 clientesEnEspera(listaUrgentes,listaRegular);
                 break;
             case 4:
+                totalPacientes->sort(totalPacientes,*compararClientes,1);
                 clientesAtendidos(totalPacientes);
                 break;
             case 5:
