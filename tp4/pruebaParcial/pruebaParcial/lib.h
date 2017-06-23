@@ -9,6 +9,7 @@ typedef struct
     int dni;
     int tipoTramite;
     int numeroTurno;
+    int estado;
 }eCliente;
 
 void menu(void);
@@ -32,3 +33,7 @@ void clientesEnEspera(ArrayList* listaUrgentes, ArrayList* listaRegular);
 void clientesAtendidos(ArrayList* totalPacientes);
 
 int compararClientes(void* clienteA,void* clienteB);
+
+void guardarTurnos(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList* totalClientes);
+
+int cargarTurnos(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList* totalClientes);

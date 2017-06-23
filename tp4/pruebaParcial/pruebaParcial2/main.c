@@ -23,21 +23,26 @@ int main()
         {
             case 1:
                 strcpy(nombreArchivo,"destinatarios.csv");
-
-
-                if(cargarListaDestinatarios(nombreArchivo,listaDestinatarios)==0)
+                if(cargarLista(nombreArchivo,listaDestinatarios)==0)
                 {
                     printf("La lista de destinatarios se cargo con exito\n");
                 }
                 break;
             case 2:
-
+                strcpy(nombreArchivo,"black_list.csv");
+                if(cargarLista(nombreArchivo,blackList)==0)
+                {
+                    printf("La black list se cargo con exito\n");
+                }
                 break;
             case 3:
-
+                depurarLista(listaDestinatarios,blackList,listaDepurada);
+                printf("Se eliminaron los destinatarios ubicados en la black list\n");
+                eliminarRepetidos(listaDepurada);
+                printf("Se eliminaron los destinatarios repetidos\n");
                 break;
             case 4:
-                mostrarListaDestinatarios(listaDestinatarios);
+                mostrarListaDestinatarios(listaDepurada);
                 break;
             case 5:
                 respuesta='n';

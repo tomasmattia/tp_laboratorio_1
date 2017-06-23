@@ -59,8 +59,10 @@ int validarDigitoRango(char* numero,int minimo,int maximo)
                 fflush(stdin);
                 gets(numero);
             }
-        }while(flag!=0);
-    }while(numCheck<minimo || numCheck>maximo);
+        }
+        while(flag!=0);
+    }
+    while(numCheck<minimo || numCheck>maximo);
     return numCheck;
 }
 
@@ -105,6 +107,7 @@ eCliente* newCliente(int dni,int tipoTramite,int turno)
         nuevoCliente->dni=dni;
         nuevoCliente->tipoTramite=tipoTramite;
         nuevoCliente->numeroTurno=turno;
+        nuevoCliente->estado=1;
         returnAux=nuevoCliente;
     }
     return returnAux;
@@ -173,6 +176,7 @@ void proximoCliente(ArrayList* listaUrgentes, ArrayList* listaRegular, ArrayList
     }
     if(proximoCliente!=NULL)
     {
+        proximoCliente->estado=0;
         totalPacientes->add(totalPacientes,proximoCliente);
         mostrarUnCliente(proximoCliente);
     }
@@ -187,12 +191,12 @@ void mostrarUnCliente(eCliente* unCliente)
     char tipoTramite[]="";
     switch(unCliente->tipoTramite)
     {
-        case 1:
-            strcpy(tipoTramite,"URGENTE");
-            break;
-        case 2:
-            strcpy(tipoTramite,"REGULAR");
-            break;
+    case 1:
+        strcpy(tipoTramite,"URGENTE");
+        break;
+    case 2:
+        strcpy(tipoTramite,"REGULAR");
+        break;
     }
     printf("DNI: %d / TIPO DE TRAMITE: %s / TURNO: %d\n",unCliente->dni,tipoTramite,unCliente->numeroTurno);
 }
@@ -203,7 +207,7 @@ void clientesEnEspera(ArrayList* listaUrgentes, ArrayList* listaRegular)
     if(listaUrgentes->size>0)
     {
         printf("Clientes urgentes que estan en espera: \n");
-        for(i=0;i<listaUrgentes->size;i++)
+        for(i=0; i<listaUrgentes->size; i++)
         {
             mostrarUnCliente(listaUrgentes->pElements[i]);
         }
@@ -215,7 +219,7 @@ void clientesEnEspera(ArrayList* listaUrgentes, ArrayList* listaRegular)
     if(listaRegular->size>0)
     {
         printf("Clientes regulares que estan en espera: \n");
-        for(i=0;i<listaRegular->size;i++)
+        for(i=0; i<listaRegular->size; i++)
         {
             mostrarUnCliente(listaRegular->pElements[i]);
         }
@@ -226,15 +230,15 @@ void clientesEnEspera(ArrayList* listaUrgentes, ArrayList* listaRegular)
     }
 }
 
-void clientesAtendidos(ArrayList* totalPacientes)
+void clientesAtendidos(ArrayList* totalClientes)
 {
     int i;
-    if(totalPacientes->size>0)
+    if(totalClientes->size>0)
     {
         printf("Lista de clientes atendidos: \n");
-        for(i=0;i<totalPacientes->size;i++)
+        for(i=0; i<totalClientes->size; i++)
         {
-            mostrarUnCliente(totalPacientes->pElements[i]);
+            mostrarUnCliente(totalClientes->pElements[i]);
         }
     }
     else
@@ -255,7 +259,82 @@ int compararClientes(void* clienteA,void* clienteB)
         return -1;
     }
     return 0;
+}
 
+void guardarTurnos(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList* totalClientes)
+{
+    FILE *f;
+    int i;
+    eCliente* unCliente;
+    f=fopen("listaTurnos.csv","w");
+    if(f == NULL)
+    {
+        printf("No se pudo crear el archivo");
+        exit(1);
+    }
+    for(i=0; i<listaUrgentes->size; i++)
+    {
+        unCliente=listaUrgentes->get(listaUrgentes,i);
+        fprintf(f,"%d,%d,%d,%d\n",unCliente->estado,unCliente->dni,unCliente->tipoTramite,unCliente->numeroTurno);
+    }
+    for(i=0; i<listaRegulares->size; i++)
+    {
+        unCliente=listaRegulares->get(listaRegulares,i);
+        fprintf(f,"%d,%d,%d,%d\n",unCliente->estado,unCliente->dni,unCliente->tipoTramite,unCliente->numeroTurno);
+    }
+    for(i=0; i<totalClientes->size; i++)
+    {
+        unCliente=totalClientes->get(totalClientes,i);
+        fprintf(f,"%d,%d,%d,%d\n",unCliente->estado,unCliente->dni,unCliente->tipoTramite,unCliente->numeroTurno);
+    }
+    fclose(f);
+}
 
+int cargarTurnos(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList* totalClientes)
+{
+    FILE *fp;
+    int returnAux=-1;
+    char* estado=(char*)malloc(sizeof(char)*10);
+    char* dni=(char*)malloc(sizeof(char)*10);
+    char* tipoTramite=(char*)malloc(sizeof(char)*10);
+    char* numeroTurno=(char*)malloc(sizeof(char)*10);
+    eCliente* unCliente;
+    fp = fopen("listaTurnos.csv","r");
+    if(fp!=NULL)
+    {
+        while(!feof(fp))
+        {
+            unCliente=(eCliente*)malloc(sizeof(eCliente));
+            if(unCliente!=NULL)
+            {
+                fscanf(fp,"%[^,],%[^,],%[^,],%[^\n]\n",estado,dni,tipoTramite,numeroTurno);
+
+                unCliente->estado=atoi(estado);
+                unCliente->dni=atoi(dni);
+                unCliente->tipoTramite=atoi(tipoTramite);
+                unCliente->numeroTurno=atoi(numeroTurno);
+
+                if(unCliente->estado==1)
+                {
+                    if(unCliente->tipoTramite==1)
+                    {
+                        listaUrgentes->add(listaUrgentes,unCliente);
+                    }
+                    else
+                    {
+                        listaRegulares->add(listaRegulares,unCliente);
+                    }
+                }
+                else
+                {
+                    totalClientes->add(totalClientes,unCliente);
+                }
+                returnAux=0;
+            }
+        }
+
+    }
+    fclose(fp);
+    return returnAux;
 }
 
