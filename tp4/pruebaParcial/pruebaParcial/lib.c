@@ -290,6 +290,44 @@ void guardarTurnos(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayLis
     fclose(f);
 }
 
+void guardarTurnosBinario(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList* totalClientes)
+{
+    FILE *f;
+    int i;
+    eCliente* unCliente;
+    f=fopen("listaTurnosBin.dat","wb");
+    if(f == NULL)
+    {
+        printf("No se pudo crear el archivo");
+        exit(1);
+    }
+    if(listaUrgentes->size>0)
+    {
+        for(i=0; i<listaUrgentes->size; i++)
+        {
+            unCliente=listaUrgentes->get(listaUrgentes,i);
+            fwrite(unCliente,sizeof(eCliente),1,f);
+        }
+    }
+    if(listaRegulares->size>0)
+    {
+        for(i=0; i<listaRegulares->size; i++)
+        {
+            unCliente=listaUrgentes->get(listaRegulares,i);
+            fwrite(unCliente,sizeof(eCliente),1,f);
+        }
+    }
+    if(totalClientes->size>0)
+    {
+        for(i=0; i<totalClientes->size; i++)
+        {
+            unCliente=listaUrgentes->get(totalClientes,i);
+            fwrite(unCliente,sizeof(eCliente),1,f);
+        }
+    }
+    fclose(f);
+}
+
 int cargarTurnos(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList* totalClientes)
 {
     FILE *fp;
@@ -307,6 +345,10 @@ int cargarTurnos(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList*
             unCliente=(eCliente*)malloc(sizeof(eCliente));
             if(unCliente!=NULL)
             {
+                if(feof(fp))
+                {
+                    break;
+                }
                 fscanf(fp,"%[^,],%[^,],%[^,],%[^\n]\n",estado,dni,tipoTramite,numeroTurno);
 
                 unCliente->estado=atoi(estado);
@@ -335,6 +377,48 @@ int cargarTurnos(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList*
 
     }
     fclose(fp);
+    return returnAux;
+}
+
+int cargarTurnosBinario(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList* totalClientes)
+{
+    FILE *f;
+    int returnAux=-1;
+    eCliente* unCliente;
+    f = fopen("listaTurnosBin.dat","rb");
+    if(f!=NULL)
+    {
+        while(!feof(f))
+        {
+            unCliente=(eCliente*)malloc(sizeof(eCliente));
+            if(unCliente!=NULL)
+            {
+                fread(unCliente,sizeof(eCliente),1,f);
+                if(feof(f))
+                {
+                    break;
+                }
+                if(unCliente->estado==1)
+                {
+                    if(unCliente->tipoTramite==1)
+                    {
+                        listaUrgentes->add(listaUrgentes,unCliente);
+                    }
+                    else
+                    {
+                        listaRegulares->add(listaRegulares,unCliente);
+                    }
+                }
+                else
+                {
+                    totalClientes->add(totalClientes,unCliente);
+                }
+                returnAux=0;
+            }
+        }
+
+    }
+    fclose(f);
     return returnAux;
 }
 

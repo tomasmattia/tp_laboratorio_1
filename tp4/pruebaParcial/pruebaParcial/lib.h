@@ -37,3 +37,7 @@ int compararClientes(void* clienteA,void* clienteB);
 void guardarTurnos(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList* totalClientes);
 
 int cargarTurnos(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList* totalClientes);
+
+void guardarTurnosBinario(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList* totalClientes);
+
+int cargarTurnosBinario(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayList* totalClientes);
