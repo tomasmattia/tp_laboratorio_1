@@ -14,7 +14,7 @@ int main()
     ArrayList* listaUrgentes=al_newArrayList();
     ArrayList* listaRegular=al_newArrayList();
     ArrayList* totalPacientes=al_newArrayList();
-    if(cargarTurnosBinario(listaUrgentes,listaRegular,totalPacientes)==0)
+    if(cargarTurnos(listaUrgentes,listaRegular,totalPacientes)==0)
     {
         printf("Listas cargadas con exito\n");
     }
@@ -40,7 +40,7 @@ int main()
                 clientesAtendidos(totalPacientes);
                 break;
             case 5:
-                guardarTurnosBinario(listaUrgentes,listaRegular,totalPacientes);
+                guardarTurnos(listaUrgentes,listaRegular,totalPacientes);
                 respuesta='n';
                 break;
             default:
