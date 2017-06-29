@@ -52,7 +52,7 @@ void mostrarUnDestinatario(eDestinatario* unDestinatario)
 void mostrarListaDestinatarios(ArrayList* listaDestinatarios)
 {
     int i;
-    for(i=0;i<listaDestinatarios->size;i++)
+    for(i=0;i<listaDestinatarios->len(listaDestinatarios);i++)
     {
         mostrarUnDestinatario(listaDestinatarios->pElements[i]);
     }
@@ -61,16 +61,17 @@ void mostrarListaDestinatarios(ArrayList* listaDestinatarios)
 void depurarLista(ArrayList* listaDestinatarios, ArrayList* blackList, ArrayList* listaDepurada)
 {
     int i,j;
-    int flagAdd=0;
+    int flagAdd;
     eDestinatario* destinatarioA;
-    eDestinatario* destinatarioBlack;
-    for(i=0;i<listaDestinatarios->size;i++)
+    eDestinatario* destinatarioB;
+    for(i=0;i<(listaDestinatarios->len(listaDestinatarios));i++)
     {
-        for(j=0;j<blackList->size;j++)
+        destinatarioA=listaDestinatarios->get(listaDestinatarios,i);
+        flagAdd=0;
+        for(j=0;j<(blackList->len(blackList));j++)
         {
-            destinatarioA=listaDestinatarios->get(listaDestinatarios,i);
-            destinatarioBlack=blackList->get(blackList,j);
-            if(destinatarioA->nombre==destinatarioBlack->nombre && destinatarioA->mail==destinatarioBlack->mail)
+            destinatarioB=blackList->get(blackList,j);
+            if(strcmp(destinatarioA->mail,destinatarioB->mail)==0 && strcmp(destinatarioA->nombre,destinatarioB->nombre)==0)
             {
                 flagAdd=1;
                 break;
@@ -88,13 +89,13 @@ void eliminarRepetidos(ArrayList* listaDepurada)
     int i,j;
     eDestinatario* destinatarioA;
     eDestinatario* destinatarioB;
-    for(i=0;i<(listaDepurada->size-1);i++)
+    for(i=0;i<(listaDepurada->len(listaDepurada)-1);i++)
     {
-        for(j=i+1;j<listaDepurada->size;j++)
+        destinatarioA=listaDepurada->get(listaDepurada,i);
+        for(j=i+1;j<listaDepurada->len(listaDepurada);j++)
         {
-            destinatarioA=listaDepurada->get(listaDepurada,i);
             destinatarioB=listaDepurada->get(listaDepurada,j);
-            if(destinatarioA->nombre==destinatarioB->nombre && destinatarioA->mail==destinatarioB->mail)
+            if(strcmp(destinatarioA->nombre,destinatarioB->nombre)==0 && strcmp(destinatarioA->mail,destinatarioB->mail)==0)
             {
                 listaDepurada->remove(listaDepurada,j);
             }

@@ -39,7 +39,7 @@
 
 1497871492 c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp4\pruebaparcial\pruebaparcial2\arraylist.h
 
-1498177650 source:c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp4\pruebaparcial\pruebaparcial2\lib.c
+1498706817 source:c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp4\pruebaparcial\pruebaparcial2\lib.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -48,14 +48,14 @@
 	"ArrayList.h"
 	"lib.h"
 
-1498096434 c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp4\pruebaparcial\pruebaparcial2\lib.h
+1498704287 c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp4\pruebaparcial\pruebaparcial2\lib.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	"ArrayList.h"
 
-1498096524 source:c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp4\pruebaparcial\pruebaparcial2\main.c
+1498706553 source:c:\users\tomas\downloads\tp_laboratorio_1-master\tp_laboratorio_1-master\tp4\pruebaparcial\pruebaparcial2\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
