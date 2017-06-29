@@ -73,7 +73,7 @@ int checkearDni(ArrayList* listaUrgentes, ArrayList* listaRegular,int dni)
     eCliente* clienteAux;
     if(dni>0)
     {
-        for(i=0; i<listaUrgentes->size; i++)
+        for(i=0; i<listaUrgentes->len(listaUrgentes); i++)
         {
             clienteAux=listaUrgentes->get(listaUrgentes,i);
             if(clienteAux->dni==dni)
@@ -84,7 +84,7 @@ int checkearDni(ArrayList* listaUrgentes, ArrayList* listaRegular,int dni)
         }
         if(returnAux!=1)
         {
-            for(i=0; i<listaRegular->size; i++)
+            for(i=0; i<listaRegular->len(listaRegular); i++)
             {
                 clienteAux=listaRegular->get(listaRegular,i);
                 if(clienteAux->dni==dni)
@@ -207,7 +207,7 @@ void clientesEnEspera(ArrayList* listaUrgentes, ArrayList* listaRegular)
     if(listaUrgentes->size>0)
     {
         printf("Clientes urgentes que estan en espera: \n");
-        for(i=0; i<listaUrgentes->size; i++)
+        for(i=0; i<listaUrgentes->len(listaUrgentes); i++)
         {
             mostrarUnCliente(listaUrgentes->pElements[i]);
         }
@@ -219,7 +219,7 @@ void clientesEnEspera(ArrayList* listaUrgentes, ArrayList* listaRegular)
     if(listaRegular->size>0)
     {
         printf("Clientes regulares que estan en espera: \n");
-        for(i=0; i<listaRegular->size; i++)
+        for(i=0; i<listaRegular->len(listaRegular); i++)
         {
             mostrarUnCliente(listaRegular->pElements[i]);
         }
@@ -236,7 +236,7 @@ void clientesAtendidos(ArrayList* totalClientes)
     if(totalClientes->size>0)
     {
         printf("Lista de clientes atendidos: \n");
-        for(i=0; i<totalClientes->size; i++)
+        for(i=0; i<totalClientes->len(totalClientes); i++)
         {
             mostrarUnCliente(totalClientes->pElements[i]);
         }
@@ -272,17 +272,17 @@ void guardarTurnos(ArrayList* listaUrgentes, ArrayList* listaRegulares, ArrayLis
         printf("No se pudo crear el archivo");
         exit(1);
     }
-    for(i=0; i<listaUrgentes->size; i++)
+    for(i=0; i<listaUrgentes->len(listaUrgentes); i++)
     {
         unCliente=listaUrgentes->get(listaUrgentes,i);
         fprintf(f,"%d,%d,%d,%d\n",unCliente->estado,unCliente->dni,unCliente->tipoTramite,unCliente->numeroTurno);
     }
-    for(i=0; i<listaRegulares->size; i++)
+    for(i=0; i<listaRegulares->len(listaRegulares); i++)
     {
         unCliente=listaRegulares->get(listaRegulares,i);
         fprintf(f,"%d,%d,%d,%d\n",unCliente->estado,unCliente->dni,unCliente->tipoTramite,unCliente->numeroTurno);
     }
-    for(i=0; i<totalClientes->size; i++)
+    for(i=0; i<totalClientes->len(totalClientes); i++)
     {
         unCliente=totalClientes->get(totalClientes,i);
         fprintf(f,"%d,%d,%d,%d\n",unCliente->estado,unCliente->dni,unCliente->tipoTramite,unCliente->numeroTurno);
@@ -301,25 +301,25 @@ void guardarTurnosBinario(ArrayList* listaUrgentes, ArrayList* listaRegulares, A
         printf("No se pudo crear el archivo");
         exit(1);
     }
-    if(listaUrgentes->size>0)
+    if(listaUrgentes->len(listaUrgentes)>0)
     {
-        for(i=0; i<listaUrgentes->size; i++)
+        for(i=0; i<listaUrgentes->len(listaUrgentes); i++)
         {
             unCliente=listaUrgentes->get(listaUrgentes,i);
             fwrite(unCliente,sizeof(eCliente),1,f);
         }
     }
-    if(listaRegulares->size>0)
+    if(listaRegulares->len(listaRegulares)>0)
     {
-        for(i=0; i<listaRegulares->size; i++)
+        for(i=0; i<listaRegulares->len(listaRegulares); i++)
         {
             unCliente=listaUrgentes->get(listaRegulares,i);
             fwrite(unCliente,sizeof(eCliente),1,f);
         }
     }
-    if(totalClientes->size>0)
+    if(totalClientes->len(totalClientes)>0)
     {
-        for(i=0; i<totalClientes->size; i++)
+        for(i=0; i<totalClientes->len(totalClientes); i++)
         {
             unCliente=listaUrgentes->get(totalClientes,i);
             fwrite(unCliente,sizeof(eCliente),1,f);
